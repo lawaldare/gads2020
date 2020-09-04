@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#95a5a7">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="https://s2.googleusercontent.com/s2/favicons?domain=ny.gov">
+  <link rel="manifest" href="/manifest.json">
+  <title>Weather app</title>
+  <link rel="stylesheet" href="css/main.css" />
+
+  <!-- ios support -->
+  <link rel="apple-touch-icon" href="./assets/android-launchericon-48-48.png">
+  <link rel="apple-touch-icon" href="./assets/android-launchericon-96-96.png">
+  <link rel="apple-touch-icon" href="./assets/android-launchericon-72-72.png">
+  <link rel="apple-touch-icon" href="./assets/android-launchericon-144-144.png">
+  <link rel="apple-touch-icon" href="./assets/android-launchericon-192-192.png">
+  <!-- <link rel="apple-touch-icon" href="./assets/android-launchericon-512-512.png"> -->
+
+</head>
+
+<body>
+
+  <h1 class="title">Weather Report</h1>
+  <form class="form">
+    <label for="city"></label>
+    <input type="text" class="input" id="city" placeholder="Enter city name" name="city" required autocomplete="off">
+    <button class="input btn">Show Weather!</button>
+  </form>
+  <main id="main">
+    <section class="location">
+      <div class="city"></div>
+      <div class="date"></div>
+    </section>
+    <div class="current">
+      <img alt="icon" class="icon">
+      <div class="temp"><span></span></div>
+      <div class="weather"></div>
+      <div class="hi-low"></div>
+    </div>
+  </main>
+  <div class="loader" id="loader">
+    <img src="assets/loader.svg" alt="loader">
+  </div>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
