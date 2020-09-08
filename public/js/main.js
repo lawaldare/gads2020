@@ -83,7 +83,6 @@ function showDate (today) {
 }
 
 // PWA
-
 if("serviceWorker" in navigator){
   navigator.serviceWorker.register('/sw.js').then(res => {
   }).catch(error => console.log(error));
