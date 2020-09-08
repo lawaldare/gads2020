@@ -1,8 +1,5 @@
-const api = {
-  key: "1f851222062e779b9c6638e3f1739e8e",
-  base: "https://api.openweathermap.org/data/2.5/weather",
-}
-
+const apiKey = "1f851222062e779b9c6638e3f1739e8e";
+const baseURL = "https://api.openweathermap.org/data/2.5/weather";
 const loader = document.getElementById('loader');
 const main = document.getElementById('main');
 const form = document.querySelector('.form');
@@ -17,15 +14,16 @@ getSavedData();
 async function fetchWeather(city){
 main.style.visibility = 'hidden';
 loader.hidden = false;
-const API = `${api.base}?q=${city}&units=metric&appid=${api.key}`;
+const API = `${baseURL}?q=${city}&units=metric&appid=${apiKey}`;
   try {
     const res = await fetch(API);
     const data = await res.json();
+    console.log(data)
     if(data.cod === 200) {
       loader.hidden = true;
       main.style.visibility = 'visible';
       localStorage.setItem('data', JSON.stringify(data));
-      displayResults(data);
+      displayWeather(data);
     } else {
       loader.hidden = true;
       alert(data.message.toUpperCase());
@@ -47,20 +45,20 @@ function getWeather(e){
 function getSavedData(){
     if(JSON.parse(localStorage.getItem('data'))){
       main.style.visibility = 'visible';
-     displayResults(JSON.parse(localStorage.getItem('data')))
+     displayWeather(JSON.parse(localStorage.getItem('data')))
   }
 }
 
 form.addEventListener('submit', getWeather);
 
 
-function displayResults (weather) {
+function displayWeather (weather) {
   let city = document.querySelector('.city');
   city.innerText = `${weather.name} Weather Report`;
 
   let now = new Date();
   let date = document.querySelector('.location .date');
-  date.innerText = dateBuilder(now);
+  date.innerText = showDate(now);
 
   let icon = document.querySelector('.current .icon');
   icon.src = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`
@@ -77,7 +75,7 @@ function displayResults (weather) {
 
 
 
-function dateBuilder (d) {
+function showDate (d) {
   let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -93,6 +91,5 @@ function dateBuilder (d) {
 
 if("serviceWorker" in navigator){
   navigator.serviceWorker.register('/sw.js').then(res => {
-    console.log(res);
   }).catch(error => console.log(error));
 }
