@@ -74,17 +74,12 @@ function displayWeather (weather) {
 }
 
 
+//today's date
+function showDate (today) {
+  let todayString = String(today);
+  let todayDate = todayString.split('2020')[0];
+  return `${todayDate}2020`;
 
-function showDate (d) {
-  let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-  let day = days[d.getDay()];
-  let date = d.getDate();
-  let month = months[d.getMonth()];
-  let year = d.getFullYear();
-
-  return `${day} ${date} ${month} ${year}`;
 }
 
 // PWA
