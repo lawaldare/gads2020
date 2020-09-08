@@ -18,7 +18,6 @@ const API = `${baseURL}?q=${city}&units=metric&appid=${apiKey}`;
   try {
     const res = await fetch(API);
     const data = await res.json();
-    console.log(data)
     if(data.cod === 200) {
       loader.hidden = true;
       main.style.visibility = 'visible';

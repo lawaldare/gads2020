@@ -12,15 +12,15 @@ const assets = [
 
 
 //cache size limit
-const limitCacheSize = (name, size) => {
-  caches.open(name).then(cache => {
-    cache.keys().then(keys => {
-      if(keys.length > size){
-        cache.delete(keys[0]).then(limitCacheSize(name, size));
-      }
-    })
-  })
-}
+// const limitCacheSize = (name, size) => {
+//   caches.open(name).then(cache => {
+//     cache.keys().then(keys => {
+//       if(keys.length > size){
+//         cache.delete(keys[0]).then(limitCacheSize(name, size));
+//       }
+//     })
+//   })
+// }
 
 self.addEventListener('install', e => {
   e.waitUntil( caches.open(staticCacheName).then(cache => {
@@ -40,7 +40,6 @@ self.addEventListener('fetch', e => {
     return cacheRequest || fetch(e.request).then(fetchRes => {
       return caches.open(dynamicCacheName).then(cache => {
         cache.put(e.request.url, fetchRes.clone());
-        limitCacheSize(dynamicCacheName, 10);
         return fetchRes;
       })
     })
